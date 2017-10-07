@@ -1,4 +1,4 @@
-/***** ======================================================================================================================================== *****/
+ /***** ======================================================================================================================================== *****/
 /*****           ====================================================================================================================           *****/
 /*****                     ================================================================================================                     *****/
 /*****                                                                                                                                          *****/
@@ -54,7 +54,7 @@ const DeviceAddress TEMP2_PROBE = {0x28, 0xFF, 0x1A, 0xAA, 0x62, 0x15, 0x03, 0x2
 const bool ENABLE_LCD_DISPLAY = true; // allows enabling or disabling of the I2C
 const bool LCD_HAS_FOUR_LINES = true; // does the LCD have 4 lines, if this is set to false I will assume it only has two
 LiquidCrystal_I2C lcd(0x27, 16, 4); // 16,4 LCD. Use a I2C finder to find the address; although they are often are 0x27
-const String LCD_FIRST_LINE = "DGS Racing"; // this is the first line that will always be displayed, change this to whatever 
+const String LCD_FIRST_LINE = "DGS Racing"; // this is the first line that will always be displayed, change this to whatever
 
 /** ================================== */
 /** CONSTANTS                          */
@@ -386,7 +386,7 @@ void loop()
     }
 
     if (ENABLE_LCD_DISPLAY) {
-      printToLCD();  
+      printToLCD();
     }
   }
 
@@ -443,7 +443,7 @@ void buttonChecks()
 }
 
 void printToLCD() {
-  String tempVoltage = String(round(batteryVoltageTotal*10)/10); 
+  String tempVoltage = String(round(batteryVoltageTotal*10)/10);
   String tempAmperage = String(round(current*10)/10);
   String tempTemp1 = String(round(tempOne*10)/10);
   String tempTemp2 = String(round(tempTwo*10)/10);
@@ -618,7 +618,7 @@ float probeGetTemp(DeviceAddress address) {
   sensors.requestTemperatures();
   float tempC = sensors.getTempC(address);
 
-  return (tempC != -127.00) ? tempC : -127;
+  return (tempC != -127.00) ? tempC : -127.00; // if you get a temperature of -127, it means that it couldn't read the temperature
 }
 
 
@@ -1171,7 +1171,3 @@ void fanSpeedISR()
 {
   fanPoll++;
 }
-
-
-
-
